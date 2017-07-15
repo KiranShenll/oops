@@ -1,19 +1,20 @@
 <?php
-class straight {
-	public function area($a) {
-		$dd = 22/5*($a*$a);
-		echo $dd;
-	}
+ 
+class Shape {
+const PI = 3.142 ;
+ 
+function __call($name,$arg){
+    if($name == 'area')
+        switch(count($arg)){
+            case 0 : return 0 ;
+            case 1 : return self::PI * $arg[0] ;
+            case 2 : return $arg[0] * $arg[1];
+        }
+    }
 }
-
-class reverse extends straight {
-	public function area($a,$b) {
-		$dd = $a + $b;
-		echo $dd;
-	}
-}
-$rev = new reverse();
-$rev -> area(5);
-
-echo $rev;
-?>
+$circle = new Shape();
+echo $circle->area(5);
+ 
+ 
+$rect = new Shape();
+echo $rect->area(5,10);
